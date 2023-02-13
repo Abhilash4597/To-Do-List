@@ -3,3 +3,14 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.line-height {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.margin {
+  margin-top: 10px;
+}
