@@ -4,8 +4,13 @@
   box-sizing: border-box;
 }
 
+.width {
+  width: 70%;
+  margin: 0 auto;
+}
+
 .line-height {
-  height: 4rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,13 +23,13 @@
 
 .edit,.delete,.alarm {
   border: none;
-  padding: 0.2rem .7rem;
+  padding: 0.2rem .5rem;
   border-radius: 10px;
   box-shadow: 0px 0px 2px white;
   margin-right: 10px;
   font-weight: bold;
+  font-size: 1rem;
   color: #495057;
-  /* margin-right: 10px; */
 }
 
 .edit:hover,.delete:hover,.alarm:hover {
@@ -32,7 +37,7 @@
 }
 
 .edit i,.delete i,.alarm i{
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-left: .5rem;
   color: #495057;
 }
