@@ -23,7 +23,6 @@ textInput.addEventListener('click', () => {
 function handleClick() {
   if (textInput.value) {
     storeData();
-
     // # IIFE function for addBtn of modal.
     addBtn.setAttribute('data-bs-dismiss', 'modal');
     addBtn.click();
@@ -61,6 +60,22 @@ function showData() {
       </div>`;
 
   reset();
+}
+
+// # Deleting Task
+function deleteTask(e) {
+  e.parentElement.parentElement.remove()
+}
+
+// # Editing Task
+function editTask(e) {
+  let task = e.parentElement.parentElement;
+  
+  textInput.value = task.children[0].innerText;
+  dateInput.value = task.children[1].innerText;
+  textarea.value = task.children[2].innerText;
+
+  task.remove();
 }
 
 // # Resetting the modal
