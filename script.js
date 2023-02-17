@@ -9,28 +9,30 @@ const tasks = document.querySelector('#tasks');
 const msg = document.querySelector('#msg');
 
 // # Reseting the default behaviour of submit
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', e => {
   e.preventDefault();
   handleClick();
 });
 
 // # Handling the error
 textInput.addEventListener('click', () => {
-  msg.textContent = "";
-})
+  msg.textContent = '';
+});
 
 // # clicking on add btn function
 function handleClick() {
   if (textInput.value) {
     storeData();
 
-    // # IIFE function for addBtn.
-    (() => {
-      addBtn.setAttribute('data-bs-dismiss', 'modal');
+    // # IIFE function for addBtn of modal.
+    addBtn.setAttribute('data-bs-dismiss', 'modal');
+    addBtn.click();
+    (() => { 
+      addBtn.setAttribute('data-bs-dismiss', '');
     })()
 
   } else {
-    msg.textContent = "Title can't be Empty"
+    msg.textContent = "Title can't be Empty";
     console.log(false);
   }
 }
@@ -57,7 +59,7 @@ function showData() {
           <i class="fa-solid fa-stopwatch"></i>
         </span>
       </div>`;
-  
+
   reset();
 }
 
@@ -67,61 +69,6 @@ function reset() {
   dateInput.value = '';
   textarea.value = '';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // let form = document.getElementById('form');
 // let textInput = document.getElementById('textInput');
@@ -176,7 +123,7 @@ function reset() {
 //           <span class="fw-bold">${x.text}</span>
 //           <span class="small text-secondary">${x.date}</span>
 //           <p>${x.description}</p>
-  
+
 //           <span class="options">
 //             <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
 //             <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
@@ -217,4 +164,3 @@ function reset() {
 //   // console.log(data);
 //   createTasks();
 // })();
-
