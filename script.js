@@ -26,10 +26,9 @@ function handleClick() {
     // # IIFE function for addBtn of modal.
     addBtn.setAttribute('data-bs-dismiss', 'modal');
     addBtn.click();
-    (() => { 
+    (() => {
       addBtn.setAttribute('data-bs-dismiss', '');
-    })()
-
+    })();
   } else {
     msg.textContent = "Title can't be Empty";
     console.log(false);
@@ -37,20 +36,27 @@ function handleClick() {
 }
 
 // # storing the input data.
-let data = {};
+let data = [];
 function storeData() {
-  data['title'] = textInput.value;
-  data['date'] = dateInput.value;
-  data['description'] = textarea.value;
+  data.push({
+    title: textInput.value,
+    date: dateInput.value,
+    description: textarea.value,
+  });
+
+  localStorage.setItem('data', JSON.stringify(data));
+
   showData();
 }
 
 // # showing the input data.
 function showData() {
-  tasks.innerHTML += `<div id=${1}>
-        <span class="fw-bold">${data.title}</span>
-        <span class="small text-secondary">${data.date}</span>
-        <p>${data.description}</p>
+  tasks.innerHTML = '';
+  data.map((item, index) => {
+    tasks.innerHTML += `<div id=${index}>
+        <span class="fw-bold">${item.title}</span>
+        <span class="small text-secondary">${item.date}</span>
+        <p>${item.description}</p>
 
         <span class="options">
           <i onClick="editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
@@ -58,19 +64,20 @@ function showData() {
           <i class="fa-solid fa-stopwatch"></i>
         </span>
       </div>`;
+  });
 
   reset();
 }
 
 // # Deleting Task
 function deleteTask(e) {
-  e.parentElement.parentElement.remove()
+  e.parentElement.parentElement.remove();
 }
 
 // # Editing Task
 function editTask(e) {
   let task = e.parentElement.parentElement;
-  
+
   textInput.value = task.children[0].innerText;
   dateInput.value = task.children[1].innerText;
   textarea.value = task.children[2].innerText;
@@ -84,6 +91,12 @@ function reset() {
   dateInput.value = '';
   textarea.value = '';
 }
+
+// # IIFE function for getting the item from local storage.
+(() => {
+  data = JSON.parse(localStorage.getItem('data'));
+  showData();
+})();
 
 // let form = document.getElementById('form');
 // let textInput = document.getElementById('textInput');
