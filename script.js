@@ -72,6 +72,10 @@ function showData() {
 // # Deleting Task
 function deleteTask(e) {
   e.parentElement.parentElement.remove();
+
+  // #deleting the task from localstorage also.
+  data.splice(e.parentElement.parentElement.id, 1);
+  localStorage.setItem('data', JSON.stringify(data));
 }
 
 // # Editing Task
@@ -82,7 +86,7 @@ function editTask(e) {
   dateInput.value = task.children[1].innerText;
   textarea.value = task.children[2].innerText;
 
-  task.remove();
+  deleteTask(e);
 }
 
 // # Resetting the modal
@@ -94,7 +98,7 @@ function reset() {
 
 // # IIFE function for getting the item from local storage.
 (() => {
-  data = JSON.parse(localStorage.getItem('data'));
+  data = JSON.parse(localStorage.getItem('data')) || [];
   showData();
 })();
 
